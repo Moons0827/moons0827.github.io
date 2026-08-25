@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moonsu Jung — Korea University</title>
+<meta name="description" content="PhD student in Computer Science at Korea University and elementary school teacher. Automated short answer grading, small language models, and AI literacy education.">
+<link rel="canonical" href="https://moons.kr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moons.kr/">
+<meta property="og:title" content="Moonsu Jung — Korea University">
+<meta property="og:description" content="Automated short answer grading, small language models, and AI literacy education.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#EBEEF1;
+    --ink:#14171C;
+    --muted:#5C6470;
+    --rule:#C9CFD6;
+    --deep:#1F3D6E;
+    --display:"Newsreader","Gowun Batang",serif;
+    --body:"IBM Plex Sans KR",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-weight:300;
+    font-size:1rem;
+    line-height:1.75;
+    letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  p{margin:0}
+
+  .wrap{max-width:50rem;margin:0 auto;padding:0 1.75rem}
+
+  /* ---------- language toggle ---------- */
+  .ko{display:none}
+  body.lang-ko .en{display:none}
+  body.lang-ko .ko{display:revert}
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.5rem 0 0;
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  .langbtn{
+    font:inherit;
+    background:none;
+    border:1px solid var(--rule);
+    color:var(--muted);
+    padding:.25rem .7rem;
+    cursor:pointer;
+    letter-spacing:.12em;
+  }
+  .langbtn:hover{color:var(--ink);border-color:var(--muted)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:4.5rem 0 3.5rem}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(3.25rem,12vw,6rem);
+    line-height:.95;
+    letter-spacing:-0.035em;
+    margin:0;
+  }
+  .avatar{
+    display:block;
+    width:88px;
+    height:88px;
+    object-fit:cover;
+    background:#fff;
+    border:1px solid var(--rule);
+    margin-bottom:1.5rem;
+  }
+
+  .role{
+    font-family:var(--mono);
+    font-size:.75rem;
+    letter-spacing:.16em;
+    color:var(--muted);
+    margin-top:1.25rem;
+    text-transform:uppercase;
+  }
+  .bio{
+    font-family:var(--display);
+    font-size:clamp(1.2rem,3.4vw,1.5rem);
+    line-height:1.65;
+    margin-top:2.25rem;
+    max-width:38ch;
+  }
+
+  .bio a{
+    color:inherit;
+    text-decoration:none;
+    border-bottom:1px solid var(--rule);
+  }
+  .bio a:hover{border-bottom-color:var(--ink)}
+
+  .profiles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem 1.25rem;
+    margin-top:2.25rem;
+    font-family:var(--mono);
+    font-size:.78rem;
+    letter-spacing:.03em;
+  }
+  .profiles a{color:var(--deep);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+  .profiles a:hover{border-bottom-color:var(--deep)}
+
+  /* ---------- sections ---------- */
+  .section{padding:3rem 0;border-top:1px solid var(--rule)}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.7rem;
+    font-weight:500;
+    letter-spacing:.2em;
+    color:var(--muted);
+    margin-bottom:1.75rem;
+    text-transform:uppercase;
+  }
+  .prose{max-width:46ch}
+  .prose + .prose{margin-top:.9rem}
+
+  /* ---------- research areas ---------- */
+  .areas{margin:0;padding:0;list-style:none}
+  .areas li{padding:.8rem 0;border-bottom:1px solid var(--rule)}
+  .areas li:last-child{border-bottom:0;padding-bottom:0}
+  .areas h3{
+    font-family:var(--display);
+    font-size:1.45rem;
+    font-weight:600;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+
+  /* ---------- publications ---------- */
+  .pubs{margin:0;padding:0;list-style:none}
+  .pubs > li{
+    display:grid;
+    grid-template-columns:4.5rem 1fr;
+    gap:0 1.25rem;
+    padding:1.35rem 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .pubs > li:last-child{border-bottom:0}
+  .year{font-family:var(--mono);font-size:.78rem;color:var(--muted);padding-top:.42rem}
+  .pub-title{
+    font-family:var(--display);
+    font-size:1.18rem;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:-.015em;
+    margin:0;
+  }
+  .venue{font-size:.88rem;color:var(--muted);margin-top:.2rem}
+  .venue strong{color:var(--ink);font-weight:500}
+  .artifacts{margin-top:.55rem;display:flex;flex-wrap:wrap;gap:.45rem}
+  .artifacts a{
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.06em;
+    text-decoration:none;
+    border:1px solid var(--rule);
+    padding:.18rem .55rem;
+    color:var(--muted);
+  }
+  .artifacts a:hover{color:var(--ink);border-color:var(--muted);background:rgba(255,255,255,.5)}
+  .pending{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted);border:1px dashed var(--rule);padding:.18rem .55rem}
+
+  /* ---------- link rows (projects, writing) ---------- */
+  .rows{margin:0;padding:0;list-style:none}
+  .rows a{
+    display:block;
+    text-decoration:none;
+    padding:1.15rem 0;
+    border-bottom:1px solid var(--rule);
+    transition:padding-left .25s ease;
+  }
+  .rows li:last-child a{border-bottom:0}
+  .rows a:hover,.rows a:focus-visible{padding-left:.8rem}
+  .row-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+  .row-name{
+    font-family:var(--display);
+    font-size:1.25rem;
+    font-weight:600;
+    letter-spacing:-.02em;
+    position:relative;
+  }
+  .row-host{font-family:var(--mono);font-size:.7rem;color:var(--muted);flex:0 0 auto}
+  .row-what{display:block;color:var(--muted);font-size:.92rem;margin-top:.15rem;max-width:48ch}
+  .tag{
+    font-family:var(--mono);
+    font-size:.62rem;
+    letter-spacing:.1em;
+    border:1px solid var(--rule);
+    padding:.05rem .4rem;
+    margin-left:.5rem;
+    color:var(--muted);
+    vertical-align:.15em;
+  }
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding:2rem 0 3.5rem;
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.06em;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    gap:.75rem;
+    flex-wrap:wrap;
+  }
+
+  :focus-visible{outline:2px solid var(--deep);outline-offset:3px}
+
+  @media (max-width:34rem){
+    .hero{padding:3.5rem 0 2.75rem}
+    .pubs > li{grid-template-columns:1fr;gap:.3rem}
+    .year{padding-top:0}
+    .row-top{flex-wrap:wrap;gap:.15rem .8rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <span>moons.kr</span>
+    <button class="langbtn" id="lang" type="button" aria-label="Switch language">KO</button>
+  </div>
+
+  <header class="hero">
+    <img class="avatar" src="/avatar.png" alt="">
+    <h1><span class="en">Moonsu Jung</span><span class="ko" lang="ko">정문수</span></h1>
+
+    <p class="role">
+      <span class="en">PhD Student, INI Lab, Computer Science, Korea University · Elementary School Teacher</span>
+      <span class="ko" lang="ko">고려대학교 컴퓨터학과 INI Lab 박사수료 · 초등학교 교사</span>
+    </p>
+
+    <p class="bio">
+      <span class="en">I teach elementary school and research at the <a href="https://ini.korea.ac.kr/">INI Lab</a> (Intelligence and Informatics) at Korea University. I am interested in assessment that can actually be deployed in schools — grading student answers with language models small enough for a school to run.</span>
+      <span class="ko" lang="ko">고려대학교 <a href="https://ini.korea.ac.kr/">INI Lab</a>에서 연구하는 초등학교 교사입니다. 학교 현장에서 실제로 적용할 수 있는 평가에 관심이 있으며, 학교가 감당할 수 있는 크기의 언어모델로 학생의 서술형 답안을 채점하는 연구를 합니다.</span>
+    </p>
+
+    <nav class="profiles">
+      <a href="mailto:moons0827@korea.ac.kr">moons0827@korea.ac.kr</a>
+      <a href="https://github.com/Moons0827">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Now</span><span class="ko" lang="ko">요즘</span></p>
+    <p class="prose">
+      <span class="en">Finishing a first journal paper, and preparing an English talk on the prompt literacy program for autumn 2026.</span>
+      <span class="ko" lang="ko">첫 저널 논문을 마무리하고 있습니다. 프롬프트 리터러시 프로그램은 2026년 가을 영어 발표를 준비 중입니다.</span>
+    </p>
+    <p class="prose">
+      <span class="en">Happy to talk if our work overlaps.</span>
+      <span class="ko" lang="ko">관심사가 겹치면 편하게 연락 주세요.</span>
+    </p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Research</span><span class="ko" lang="ko">연구</span></p>
+    <ul class="areas">
+      <li>
+        <h3><span class="en">Automated short answer grading</span><span class="ko" lang="ko">자동 단답형 채점</span></h3>
+      </li>
+      <li>
+        <h3><span class="en">Small language models &amp; distillation</span><span class="ko" lang="ko">소형 언어모델과 지식 증류</span></h3>
+      </li>
+      <li>
+        <h3><span class="en">AI literacy in elementary education</span><span class="ko" lang="ko">초등 AI 리터러시 교육</span></h3>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Selected publications</span><span class="ko" lang="ko">주요 논문</span></p>
+    <ul class="pubs">
+
+      <li>
+        <span class="year">2026</span>
+        <div>
+          <p class="pub-title">Development of a revision-loop-based educational program for improving elementary school students' prompt literacy</p>
+          <p class="venue"><strong>Moonsu Jung</strong>, Hyeon-Cheol Kim · Korean Association of Computer Education, Summer Conference <span class="tag">POSTER</span><span class="tag">IN KOREAN</span></p>
+        </div>
+      </li>
+
+      <li>
+        <span class="year">2026</span>
+        <div>
+          <p class="pub-title">Lightweight language model-based online text analysis for suicide risk detection: model performance comparison and educational implications</p>
+          <p class="venue">Jun-byeol Ahn, <strong>Moonsu Jung</strong> (corresponding) · Korean Association of Artificial Intelligence Education, Summer Conference <span class="tag">IN KOREAN</span></p>
+        </div>
+      </li>
+
+      <li>
+        <span class="year">2023</span>
+        <div>
+          <p class="pub-title">The effect of voice differences in voice-based chatbots on the reliability of elementary school students</p>
+          <p class="venue"><strong>Moonsu Jung</strong>, Hyeon-Cheol Kim · Korean Association of Computer Education, Conference Proceedings 27(2) <span class="tag">IN KOREAN</span></p>
+          <p class="artifacts">
+            <a href="https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&amp;control_no=b321f0b4bedfd675e9810257f7042666">RISS</a>
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <span class="year">2022</span>
+        <div>
+          <p class="pub-title">Analysis of the relationship between changes in the theme of entry works by year and social issues: focusing on 2015 to 2021</p>
+          <p class="venue"><strong>Moonsu Jung</strong> · Korean Association of Artificial Intelligence Education, Journal of AI Research 3(3) <span class="tag">IN KOREAN</span></p>
+          <p class="artifacts">
+            <a href="https://www.riss.kr/search/detail/DetailView.do?p_mat_type=1a0202e37d52c72d&amp;control_no=139d92773623fd476aae8a972f9116fb">RISS</a>
+          </p>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Books</span><span class="ko" lang="ko">저서</span></p>
+    <ul class="pubs">
+      <li>
+        <span class="year">2026</span>
+        <div>
+          <p class="pub-title">THE AI BOOK</p>
+          <p class="venue"><span class="en">Hyeon-Cheol Kim et al. · NAVER Connect Foundation · Gimm-Young, 2026</span><span class="ko" lang="ko">김현철 외 6인 · 네이버 커넥트재단 기획 · 김영사, 2026</span> <span class="tag">IN KOREAN</span></p>
+          <p class="artifacts">
+            <a href="https://product.kyobobook.co.kr/detail/S000220166185">Kyobo</a>
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Things I built</span><span class="ko" lang="ko">만든 것</span></p>
+    <ul class="rows">
+      <li>
+        <a href="https://github.com/Moons0827/prompt-gate">
+          <span class="row-top">
+            <span class="row-name">prompt-gate</span>
+            <span class="row-host">github.com</span>
+          </span>
+          <span class="row-what">
+            <span class="en">The web system behind the prompt literacy program — students revise, teachers approve.</span>
+            <span class="ko" lang="ko">프롬프트 리터러시 프로그램 운영 시스템 — 학생이 고쳐 쓰고 교사가 통과시킵니다.</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow"><span class="en">Writing</span><span class="ko" lang="ko">쓰는 곳</span></p>
+    <ul class="rows">
+      <li>
+        <a href="https://gominq.com">
+          <span class="row-top">
+            <span class="row-name">GOMINQ<span class="tag">KOREAN</span></span>
+            <span class="row-host">gominq.com</span>
+          </span>
+          <span class="row-what">
+            <span class="en">Explaining one AI or CS concept at a time, for people outside the field.</span>
+            <span class="ko" lang="ko">AI·IT 개념을 하나씩 풀어 쓰는 블로그.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="https://blog.naver.com/moons0827">
+          <span class="row-top">
+            <span class="row-name">Classroom Materials<span class="tag">KOREAN</span></span>
+            <span class="row-host">blog.naver.com</span>
+          </span>
+          <span class="row-what">
+            <span class="en">Lesson materials and printable worksheets for elementary classrooms — music listening, reading logs, math notebooks — shared openly with Korean teachers.</span>
+            <span class="ko" lang="ko">음악 감상 학습지, 독서록, 오답노트 등 초등 교실에서 바로 쓰는 수업 자료를 선생님들과 나눕니다.</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>© 2026 moons.kr</span>
+    <span>Last updated 25 Aug 2026</span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('lang');
+    btn.addEventListener('click', function(){
+      var ko = document.body.classList.toggle('lang-ko');
+      document.documentElement.lang = ko ? 'ko' : 'en';
+      btn.textContent = ko ? 'EN' : 'KO';
+    });
+  })();
+</script>
+
+</body>
+</html>
